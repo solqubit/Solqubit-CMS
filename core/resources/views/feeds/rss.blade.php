@@ -1,0 +1,4 @@
+{!! '<'.'?xml version="1.0" encoding="UTF-8"?'.'>' !!}
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>{{ $site['name'] ?? 'Solqubit' }}</title><link>{{ route('home') }}</link><description>{{ $site['description'] ?? '' }}</description><language>{{ $language }}</language><atom:link href="{{ route('feed') }}" rel="self" type="application/rss+xml"/>@if($updated)<lastBuildDate>{{ $updated->toRssString() }}</lastBuildDate>@endif
+@foreach($posts as $post)<item><title>{{ $post->title }}</title><link>{{ $post->url() }}</link><guid isPermaLink="true">{{ $post->url() }}</guid>@if(filled($post->excerpt))<description>{{ $post->excerpt }}</description>@endif<pubDate>{{ $post->published_at->toRssString() }}</pubDate>@if($post->author?->name)<dc:creator>{{ $post->author->name }}</dc:creator>@endif</item>
+@endforeach</channel></rss>

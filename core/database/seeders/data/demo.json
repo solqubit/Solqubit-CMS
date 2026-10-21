@@ -1,0 +1,1181 @@
+[
+  {
+    "slug": "prompts-ia",
+    "title": "De una idea a un buen prompt",
+    "excerpt": "Define el objetivo, aporta contexto y dale una estructura útil a la respuesta.",
+    "category": "Inteligencia artificial",
+    "tags": [
+      "IA",
+      "Prompts",
+      "Productividad"
+    ],
+    "tone": "lilac",
+    "cover": "cartoon/intelligence.webp",
+    "reading_minutes": 7,
+    "difficulty": "Básico",
+    "status": "draft",
+    "featured": false,
+    "content": [
+      {
+        "type": "paragraph",
+        "data": {
+          "html": "<p>Un prompt útil describe una tarea concreta, su audiencia y el formato esperado. Este ejercicio sirve para comparar cómo cambia una respuesta cuando aportas contexto.</p>"
+        }
+      },
+      {
+        "type": "heading",
+        "data": {
+          "text": "Antes de empezar",
+          "level": "h2"
+        }
+      },
+      {
+        "type": "table",
+        "data": {
+          "columns": [
+            "Requisito",
+            "Qué necesitas"
+          ],
+          "rows": [
+            {
+              "cells": "Herramienta | Tu asistente de IA preferido"
+            },
+            {
+              "cells": "Contexto | Una tarea y una audiencia definidas"
+            },
+            {
+              "cells": "Revisión | Comprobar la respuesta antes de usarla"
+            }
+          ]
+        }
+      },
+      {
+        "type": "heading",
+        "data": {
+          "text": "Empieza por una tarea concreta",
+          "level": "h2"
+        }
+      },
+      {
+        "type": "paragraph",
+        "data": {
+          "html": "<p>Copia esta instrucción en tu asistente y adapta la audiencia o el formato a la tarea que quieras resolver.</p>"
+        }
+      },
+      {
+        "type": "code",
+        "data": {
+          "text": "Objetivo: explica qué es un servidor web.\nAudiencia: una persona que empieza en Linux.\nFormato: una explicación breve y un ejemplo.\nSi falta información, pregunta antes de asumir.",
+          "label": "PROMPT · EJEMPLO",
+          "language": "text"
+        }
+      },
+      {
+        "type": "heading",
+        "data": {
+          "text": "Comparar y revisar",
+          "level": "h2"
+        }
+      },
+      {
+        "type": "paragraph",
+        "data": {
+          "html": "<p>Prueba la misma tarea con dos audiencias distintas: una persona que empieza y una que ya administra servidores. Comprueba si cambia el vocabulario y si se mantiene el sentido de la explicación.</p>"
+        }
+      },
+      {
+        "type": "notice",
+        "data": {
+          "title": "Ten en cuenta",
+          "text": "Una respuesta fluida puede contener errores. Verifica los datos técnicos y los comandos antes de utilizarlos.",
+          "tone": "info"
+        }
+      },
+      {
+        "type": "list",
+        "data": {
+          "title": "Puntos clave",
+          "ordered": false,
+          "items": [
+            {
+              "text": "Una tarea concreta delimita el resultado esperado."
+            },
+            {
+              "text": "La audiencia y el formato ayudan a orientar la respuesta."
+            },
+            {
+              "text": "Los datos técnicos de una respuesta necesitan verificación."
+            }
+          ]
+        }
+      },
+      {
+        "type": "heading",
+        "data": {
+          "text": "Archivos de apoyo",
+          "level": "h2"
+        }
+      },
+      {
+        "type": "file",
+        "data": {
+          "label": "Prompt de ejemplo",
+          "filename": "prompt-de-ejemplo.txt",
+          "contents": "Objetivo: explica qué es un servidor web.\nAudiencia: una persona que empieza en Linux.\nFormato: una explicación breve y un ejemplo.\nSi falta información, pregunta antes de asumir.\n"
+        }
+      },
+      {
+        "type": "file",
+        "data": {
+          "label": "Requisitos de la práctica",
+          "filename": "prompts-ia-requisitos.txt",
+          "contents": "Herramienta: Tu asistente de IA preferido\nContexto: Una tarea y una audiencia definidas\nRevisión: Comprobar la respuesta antes de usarla\n"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "nagios",
+    "title": "Tu primer host y servicio en Nagios Core",
+    "excerpt": "Registra un servidor, comprueba su servicio HTTP y valida la configuración antes de aplicar los cambios.",
+    "category": "Monitoreo",
+    "tags": [
+      "Nagios",
+      "Ubuntu",
+      "Monitoreo"
+    ],
+    "tone": "peach",
+    "cover": "cartoon/infrastructure.webp",
+    "reading_minutes": 10,
+    "difficulty": "Intermedio",
+    "status": "published",
+    "featured": true,
+    "content": [
+      {
+        "type": "paragraph",
+        "data": {
+          "html": "<p>Vamos a registrar web01 en una instalación existente de Nagios Core. Tendrás un host para comprobar la disponibilidad del equipo y un servicio para revisar su respuesta HTTP.</p>"
+        }
+      },
+      {
+        "type": "heading",
+        "data": {
+          "text": "Antes de empezar",
+          "level": "h2"
+        }
+      },
+      {
+        "type": "paragraph",
+        "data": {
+          "html": "<p>Este ejemplo parte de Nagios Core y Nagios Plugins ya instalados, con los archivos de ejemplo de la guía oficial. Las rutas corresponden a una instalación en <code>/usr/local/nagios</code>.</p>"
+        }
+      },
+      {
+        "type": "table",
+        "data": {
+          "columns": [
+            "Necesitas",
+            "Comprueba lo siguiente"
+          ],
+          "rows": [
+            {
+              "cells": "Nagios Core | Servicio instalado y acceso a su configuración."
+            },
+            {
+              "cells": "Plantillas | `linux-server` y `generic-service`, con sus dependencias originales."
+            },
+            {
+              "cells": "Plugin HTTP | `check_http` instalado y definido en `commands.cfg`."
+            },
+            {
+              "cells": "Servidor de destino | Un servidor web accesible por HTTP en el puerto 80 y por ICMP."
+            }
+          ]
+        }
+      },
+      {
+        "type": "notice",
+        "data": {
+          "title": "Adapta las direcciones a tu red",
+          "text": "`192.168.1.50` es una IP de ejemplo. Sustitúyela por la de tu servidor. Si instalaste Nagios mediante paquetes, revisa también las rutas y el nombre de su servicio.",
+          "tone": "info"
+        }
+      },
+      {
+        "type": "heading",
+        "data": {
+          "text": "Qué vamos a monitorear",
+          "level": "h2"
+        }
+      },
+      {
+        "type": "paragraph",
+        "data": {
+          "html": "<p>El host y el servicio responden preguntas distintas: ¿está disponible el equipo? y ¿responde el servidor web? En este caso las comprobaciones se ejecutan desde Nagios, sin instalar un agente en web01.</p>"
+        }
+      },
+      {
+        "type": "image",
+        "data": {
+          "asset": "nagios-lab.svg",
+          "alt": "Nagios Core, en la dirección de ejemplo 192.168.1.10, comprueba por ICMP el host web01 y por HTTP su puerto 80 en 192.168.1.50.",
+          "caption": "Esquema del laboratorio. Las direcciones son de ejemplo; no representa un estado en vivo."
+        }
+      },
+      {
+        "type": "heading",
+        "data": {
+          "text": "Definir el host y el servicio",
+          "level": "h2"
+        }
+      },
+      {
+        "type": "paragraph",
+        "data": {
+          "html": "<p>Crea <code>web01.cfg</code> dentro del directorio <code>objects</code> y añade estas dos definiciones. El servicio se asocia al host mediante el mismo <code>host_name</code>.</p>"
+        }
+      },
+      {
+        "type": "code",
+        "data": {
+          "text": "sudo nano /usr/local/nagios/etc/objects/web01.cfg",
+          "label": "Terminal · abrir el archivo",
+          "language": "bash"
+        }
+      },
+      {
+        "type": "code",
+        "data": {
+          "text": "# Solqubit: laboratorio de monitoreo HTTP\n# Sustituye la direccion por la IP de tu servidor.\n# Requiere las plantillas linux-server y generic-service.\ndefine host {\n    use                     linux-server\n    host_name               web01\n    alias                   Servidor web de laboratorio\n    address                 192.168.1.50\n    notifications_enabled   0\n}\n\ndefine service {\n    use                     generic-service\n    host_name               web01\n    service_description     HTTP\n    check_command           check_http\n    notifications_enabled   0\n}\n",
+          "label": "web01.cfg",
+          "language": "config"
+        }
+      },
+      {
+        "type": "notice",
+        "data": {
+          "title": "Las notificaciones están desactivadas",
+          "text": "`notifications_enabled 0` evita enviar avisos desde este ejemplo. El monitoreo sigue activo. Configura los contactos y las notificaciones antes de usarlo como un sistema de alertas.",
+          "tone": "warning"
+        }
+      },
+      {
+        "type": "paragraph",
+        "data": {
+          "html": "<p>En <code>nagios.cfg</code>, incluye el archivo con la siguiente directiva. Si un <code>cfg_dir</code> ya carga la carpeta <code>objects</code>, no añadas además este <code>cfg_file</code>: el mismo archivo no debe cargarse dos veces.</p>"
+        }
+      },
+      {
+        "type": "code",
+        "data": {
+          "text": "cfg_file=/usr/local/nagios/etc/objects/web01.cfg",
+          "label": "nagios.cfg · directiva de inclusión",
+          "language": "config"
+        }
+      },
+      {
+        "type": "heading",
+        "data": {
+          "text": "Validar antes de aplicar",
+          "level": "h2"
+        }
+      },
+      {
+        "type": "paragraph",
+        "data": {
+          "html": "<p>Ejecuta la comprobación de configuración y revisa toda su salida. Si aparecen errores, corrígelos antes de reiniciar el servicio.</p>"
+        }
+      },
+      {
+        "type": "code",
+        "data": {
+          "text": "sudo /usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg",
+          "label": "Terminal · validar configuración",
+          "language": "bash"
+        }
+      },
+      {
+        "type": "output",
+        "data": {
+          "text": "Total Warnings: 0\nTotal Errors:   0",
+          "label": "Salida de ejemplo · resumen de una validación correcta",
+          "language": "text"
+        }
+      },
+      {
+        "type": "notice",
+        "data": {
+          "title": "Sin errores de configuración",
+          "text": "Un resumen con cero errores permite pasar a la aplicación de los cambios. Esta validación comprueba la configuración; todavía no confirma que web01 responda por la red.",
+          "tone": "note"
+        }
+      },
+      {
+        "type": "paragraph",
+        "data": {
+          "html": "<p>Si tu instalación usa la unidad de systemd llamada <code>nagios</code>, aplica los cambios y comprueba su estado:</p>"
+        }
+      },
+      {
+        "type": "code",
+        "data": {
+          "text": "sudo systemctl restart nagios\nsudo systemctl status nagios --no-pager",
+          "label": "Terminal · reiniciar y consultar",
+          "language": "bash"
+        }
+      },
+      {
+        "type": "heading",
+        "data": {
+          "text": "Comprobar el resultado",
+          "level": "h2"
+        }
+      },
+      {
+        "type": "paragraph",
+        "data": {
+          "html": "<p>En la interfaz de Nagios, busca el host <code>web01</code> y el servicio <code>HTTP</code>. Un estado <code>PENDING</code> indica que aún no hay resultado de la comprobación. Después, revisa el estado y el texto que devuelve el plugin.</p>"
+        }
+      },
+      {
+        "type": "table",
+        "data": {
+          "columns": [
+            "Estado",
+            "Qué revisar"
+          ],
+          "rows": [
+            {
+              "cells": "OK | El plugin considera correcta la respuesta según sus opciones."
+            },
+            {
+              "cells": "WARNING | Hay una condición de aviso; lee el detalle de la comprobación."
+            },
+            {
+              "cells": "CRITICAL | La comprobación detectó una condición crítica, por ejemplo un servicio inaccesible."
+            },
+            {
+              "cells": "UNKNOWN | El plugin no pudo determinar el estado; revisa sus parámetros y su salida."
+            }
+          ]
+        }
+      },
+      {
+        "type": "list",
+        "data": {
+          "title": "Puntos clave del laboratorio",
+          "ordered": false,
+          "items": [
+            {
+              "text": "La IP del ejemplo debe corresponder al servidor que se va a monitorear."
+            },
+            {
+              "text": "El archivo de configuración debe cargarse una sola vez."
+            },
+            {
+              "text": "La configuración debe validarse sin errores antes de reiniciar Nagios."
+            },
+            {
+              "text": "La interfaz muestra el estado del host y del servicio HTTP."
+            }
+          ]
+        }
+      },
+      {
+        "type": "heading",
+        "data": {
+          "text": "Problemas habituales",
+          "level": "h2"
+        }
+      },
+      {
+        "type": "details",
+        "data": {
+          "title": "Nagios no reconoce la plantilla linux-server",
+          "text": "Comprueba que `templates.cfg` esté incluido en la configuración y que conserve las plantillas del ejemplo oficial. El nombre que aparece en `use` debe coincidir con una plantilla cargada."
+        }
+      },
+      {
+        "type": "details",
+        "data": {
+          "title": "El host aparece DOWN, pero la web abre",
+          "text": "La plantilla `linux-server` usa `check-host-alive`. Si ICMP está bloqueado, el estado del host puede fallar aunque HTTP responda. Revisa la conectividad desde la máquina de Nagios."
+        }
+      },
+      {
+        "type": "details",
+        "data": {
+          "title": "HTTP devuelve una página distinta o una redirección",
+          "text": "Este ejemplo consulta la IP. Un sitio con virtual hosts puede necesitar `-H` con su dominio; HTTPS puede requerir `-S` y SNI. Revisa las opciones de `check_http` y la definición del comando antes de cambiar sus argumentos."
+        }
+      },
+      {
+        "type": "heading",
+        "data": {
+          "text": "Ejemplo en video",
+          "level": "h2"
+        }
+      },
+      {
+        "type": "paragraph",
+        "data": {
+          "html": "<p>Un caso práctico de alta de hosts y servicios con las plantillas de Nagios. Video complementario en inglés, publicado en 2022 por CloudCoachingMentor.</p>"
+        }
+      },
+      {
+        "type": "video",
+        "data": {
+          "url": "https://www.youtube.com/watch?v=FsWac47RSNc",
+          "caption": "Adding Host and Service in Nagios Core · CloudCoachingMentor"
+        }
+      },
+      {
+        "type": "heading",
+        "data": {
+          "text": "Documentación de consulta",
+          "level": "h2"
+        }
+      },
+      {
+        "type": "links",
+        "data": {
+          "items": [
+            {
+              "label": "Monitorear servicios HTTP",
+              "url": "https://assets.nagios.com/downloads/nagioscore/docs/nagioscore/4/en/monitoring-publicservices.html"
+            },
+            {
+              "label": "Verificar la configuración",
+              "url": "https://assets.nagios.com/downloads/nagioscore/docs/nagioscore/4/en/verifyconfig.html"
+            },
+            {
+              "label": "Opciones de check_http",
+              "url": "https://nagios-plugins.org/doc/man/check_http.html"
+            }
+          ]
+        }
+      },
+      {
+        "type": "heading",
+        "data": {
+          "text": "Archivos de apoyo",
+          "level": "h2"
+        }
+      },
+      {
+        "type": "file",
+        "data": {
+          "label": "Host y servicio HTTP",
+          "filename": "web01.cfg",
+          "contents": "# Solqubit: laboratorio de monitoreo HTTP\n# Sustituye la direccion por la IP de tu servidor.\n# Requiere las plantillas linux-server y generic-service.\ndefine host {\n    use                     linux-server\n    host_name               web01\n    alias                   Servidor web de laboratorio\n    address                 192.168.1.50\n    notifications_enabled   0\n}\n\ndefine service {\n    use                     generic-service\n    host_name               web01\n    service_description     HTTP\n    check_command           check_http\n    notifications_enabled   0\n}\n"
+        }
+      },
+      {
+        "type": "file",
+        "data": {
+          "label": "Notas del laboratorio",
+          "filename": "nagios-comprobaciones.txt",
+          "contents": "Laboratorio Solqubit — Nagios Core\n\n- Sustituir 192.168.1.50 por la IP del servidor.\n- Confirmar las plantillas y los plugins.\n- Cargar web01.cfg una sola vez.\n- Validar la configuración antes de reiniciar.\n- Revisar web01 y HTTP en la interfaz.\n\nLas notificaciones del archivo de ejemplo están desactivadas.\n"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "glpi",
+    "title": "Comprobar el entorno antes de instalar GLPI",
+    "excerpt": "Consulta las versiones de PHP y del cliente de base de datos antes de preparar tu instalación.",
+    "category": "Herramientas IT",
+    "tags": [
+      "GLPI",
+      "Inventario",
+      "Helpdesk"
+    ],
+    "tone": "rose",
+    "cover": "cartoon/management.webp",
+    "reading_minutes": 12,
+    "difficulty": "Intermedio",
+    "status": "published",
+    "featured": false,
+    "content": [
+      {
+        "type": "paragraph",
+        "data": {
+          "html": "<p>Antes de desplegar GLPI, conviene registrar las versiones del entorno. Esta comprobación reúne la información que compararás con los requisitos de la versión que quieras instalar.</p>"
+        }
+      },
+      {
+        "type": "heading",
+        "data": {
+          "text": "Antes de empezar",
+          "level": "h2"
+        }
+      },
+      {
+        "type": "table",
+        "data": {
+          "columns": [
+            "Requisito",
+            "Qué necesitas"
+          ],
+          "rows": [
+            {
+              "cells": "Servidor web | Apache o Nginx"
+            },
+            {
+              "cells": "Lenguaje | PHP compatible con tu versión de GLPI"
+            },
+            {
+              "cells": "Base de datos | MySQL o MariaDB compatible"
+            }
+          ]
+        }
+      },
+      {
+        "type": "heading",
+        "data": {
+          "text": "Revisa tu entorno",
+          "level": "h2"
+        }
+      },
+      {
+        "type": "paragraph",
+        "data": {
+          "html": "<p>Ejecuta estas consultas en el servidor previsto para GLPI. La versión del cliente de base de datos puede ser distinta de la del servidor.</p>"
+        }
+      },
+      {
+        "type": "code",
+        "data": {
+          "text": "php --version\nmysql --version",
+          "label": "BASH · ENTORNO",
+          "language": "bash"
+        }
+      },
+      {
+        "type": "heading",
+        "data": {
+          "text": "Interpretar las versiones",
+          "level": "h2"
+        }
+      },
+      {
+        "type": "paragraph",
+        "data": {
+          "html": "<p><code>php --version</code> muestra la versión del ejecutable PHP de la terminal. El servidor web podría utilizar otra configuración o versión de PHP; verifica ambas antes de instalar.</p>"
+        }
+      },
+      {
+        "type": "notice",
+        "data": {
+          "title": "Ten en cuenta",
+          "text": "No elijas una versión de PHP solo por ser la más reciente. Revisa la matriz de compatibilidad de la versión de GLPI que vayas a utilizar.",
+          "tone": "info"
+        }
+      },
+      {
+        "type": "list",
+        "data": {
+          "title": "Puntos clave",
+          "ordered": false,
+          "items": [
+            {
+              "text": "PHP en la terminal y en el servidor web puede tener versiones distintas."
+            },
+            {
+              "text": "La versión del cliente de base de datos no confirma la del servidor."
+            },
+            {
+              "text": "La compatibilidad depende de la versión de GLPI elegida."
+            }
+          ]
+        }
+      },
+      {
+        "type": "heading",
+        "data": {
+          "text": "Archivos de apoyo",
+          "level": "h2"
+        }
+      },
+      {
+        "type": "file",
+        "data": {
+          "label": "Comandos de consulta",
+          "filename": "glpi-comandos.txt",
+          "contents": "php --version\nmysql --version\n"
+        }
+      },
+      {
+        "type": "file",
+        "data": {
+          "label": "Requisitos de la práctica",
+          "filename": "glpi-requisitos.txt",
+          "contents": "Servidor web: Apache o Nginx\nLenguaje: PHP compatible con tu versión de GLPI\nBase de datos: MySQL o MariaDB compatible\n"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "linux",
+    "title": "Archivos y carpetas: una práctica de Linux",
+    "excerpt": "Crea una carpeta de práctica, guarda una nota y revisa sus archivos con comandos cotidianos.",
+    "category": "Linux",
+    "tags": [
+      "Linux",
+      "Terminal",
+      "Bash"
+    ],
+    "tone": "blue",
+    "cover": "cartoon/workspace.webp",
+    "reading_minutes": 5,
+    "difficulty": "Básico",
+    "status": "published",
+    "featured": false,
+    "content": [
+      {
+        "type": "paragraph",
+        "data": {
+          "html": "<p>Trabajaremos dentro de una carpeta nueva de tu usuario. Al terminar tendrás un archivo de texto y sabrás localizarlo, listar sus permisos y leer su contenido.</p>"
+        }
+      },
+      {
+        "type": "heading",
+        "data": {
+          "text": "Preparar un espacio de práctica",
+          "level": "h2"
+        }
+      },
+      {
+        "type": "paragraph",
+        "data": {
+          "html": "<p>Abre una terminal de Linux. Estos pasos se realizan con tu usuario habitual; no requieren <code>sudo</code>.</p>"
+        }
+      },
+      {
+        "type": "code",
+        "data": {
+          "text": "mkdir -p ~/laboratorio-solqubit\ncd ~/laboratorio-solqubit\npwd",
+          "label": "Terminal · crear y abrir una carpeta",
+          "language": "bash"
+        }
+      },
+      {
+        "type": "output",
+        "data": {
+          "text": "/home/ana/laboratorio-solqubit",
+          "label": "Salida de ejemplo · el nombre de usuario será el tuyo",
+          "language": "text"
+        }
+      },
+      {
+        "type": "heading",
+        "data": {
+          "text": "Crear una nota",
+          "level": "h2"
+        }
+      },
+      {
+        "type": "paragraph",
+        "data": {
+          "html": "<p>El siguiente comando añade una línea a <code>notas.txt</code>. Si el archivo no existe, lo crea. Si lo repites, añade otra línea.</p>"
+        }
+      },
+      {
+        "type": "code",
+        "data": {
+          "text": "printf '%s\\n' 'Mi primera práctica con Linux.' >> notas.txt\ncat notas.txt",
+          "label": "Terminal · escribir y leer",
+          "language": "bash"
+        }
+      },
+      {
+        "type": "notice",
+        "data": {
+          "title": "La diferencia entre > y >>",
+          "text": "`>>` añade contenido al final del archivo. `>` reemplaza su contenido. En esta práctica usamos `>>` para conservar las notas que ya existan.",
+          "tone": "info"
+        }
+      },
+      {
+        "type": "heading",
+        "data": {
+          "text": "Revisar los archivos",
+          "level": "h2"
+        }
+      },
+      {
+        "type": "code",
+        "data": {
+          "text": "ls -lah",
+          "label": "Terminal · listar detalles",
+          "language": "bash"
+        }
+      },
+      {
+        "type": "table",
+        "data": {
+          "columns": [
+            "Opción",
+            "Qué aporta"
+          ],
+          "rows": [
+            {
+              "cells": "`-l` | Muestra permisos, propietario, tamaño y fecha."
+            },
+            {
+              "cells": "`-a` | Incluye nombres que empiezan por un punto."
+            },
+            {
+              "cells": "`-h` | Presenta tamaños en unidades fáciles de leer."
+            }
+          ]
+        }
+      },
+      {
+        "type": "list",
+        "data": {
+          "title": "Resumen de comandos",
+          "ordered": false,
+          "items": [
+            {
+              "text": "`pwd` muestra la ruta del directorio actual."
+            },
+            {
+              "text": "`printf` escribe la nota y `cat notas.txt` muestra su contenido."
+            },
+            {
+              "text": "`ls -lah` lista los archivos con permisos, tamaños legibles y elementos ocultos."
+            }
+          ]
+        }
+      },
+      {
+        "type": "details",
+        "data": {
+          "title": "¿Dónde se guardó mi archivo?",
+          "text": "En el directorio desde el que ejecutaste `printf`. Usa `pwd` para ver la ruta; en este ejemplo debe terminar en `laboratorio-solqubit`."
+        }
+      },
+      {
+        "type": "heading",
+        "data": {
+          "text": "Archivos de apoyo",
+          "level": "h2"
+        }
+      },
+      {
+        "type": "file",
+        "data": {
+          "label": "Nota de la práctica",
+          "filename": "notas.txt",
+          "contents": "Mi primera práctica con Linux.\n"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "docker",
+    "title": "Comprobar Docker y Compose en tu equipo",
+    "excerpt": "Identifica las herramientas y consulta los servicios de un proyecto existente.",
+    "category": "Contenedores",
+    "tags": [
+      "Docker",
+      "Compose",
+      "Contenedores"
+    ],
+    "tone": "lilac",
+    "cover": "cartoon/infrastructure.webp",
+    "reading_minutes": 10,
+    "difficulty": "Básico",
+    "status": "published",
+    "featured": false,
+    "content": [
+      {
+        "type": "paragraph",
+        "data": {
+          "html": "<p>Antes de trabajar con un proyecto de Compose, comprueba que el motor y el complemento estén disponibles. Estas consultas ayudan a identificar el entorno desde el que vas a operar.</p>"
+        }
+      },
+      {
+        "type": "heading",
+        "data": {
+          "text": "Antes de empezar",
+          "level": "h2"
+        }
+      },
+      {
+        "type": "table",
+        "data": {
+          "columns": [
+            "Requisito",
+            "Qué necesitas"
+          ],
+          "rows": [
+            {
+              "cells": "Motor | Docker instalado"
+            },
+            {
+              "cells": "Complemento | Docker Compose"
+            },
+            {
+              "cells": "Proyecto | Directorio de trabajo propio"
+            }
+          ]
+        }
+      },
+      {
+        "type": "heading",
+        "data": {
+          "text": "Comprueba las herramientas",
+          "level": "h2"
+        }
+      },
+      {
+        "type": "paragraph",
+        "data": {
+          "html": "<p>Los dos primeros comandos consultan versiones. Ejecuta <code>docker compose ps</code> desde una carpeta que ya contenga un archivo Compose.</p>"
+        }
+      },
+      {
+        "type": "code",
+        "data": {
+          "text": "docker --version\ndocker compose version\ndocker compose ps",
+          "label": "BASH · DOCKER",
+          "language": "bash"
+        }
+      },
+      {
+        "type": "heading",
+        "data": {
+          "text": "Interpretar la consulta",
+          "level": "h2"
+        }
+      },
+      {
+        "type": "paragraph",
+        "data": {
+          "html": "<p>La versión de Docker y la de Compose son datos distintos. <code>docker compose ps</code> consulta los servicios del proyecto actual; no crea ni inicia contenedores.</p>"
+        }
+      },
+      {
+        "type": "notice",
+        "data": {
+          "title": "Ten en cuenta",
+          "text": "Si aparece un mensaje indicando que no se encontró un archivo de configuración, cambia al directorio de tu proyecto antes de repetir la consulta.",
+          "tone": "info"
+        }
+      },
+      {
+        "type": "list",
+        "data": {
+          "title": "Puntos clave",
+          "ordered": false,
+          "items": [
+            {
+              "text": "`docker --version` muestra la versión del cliente Docker."
+            },
+            {
+              "text": "`docker compose version` muestra la versión de Compose."
+            },
+            {
+              "text": "`docker compose ps` consulta los servicios del proyecto actual."
+            }
+          ]
+        }
+      },
+      {
+        "type": "heading",
+        "data": {
+          "text": "Archivos de apoyo",
+          "level": "h2"
+        }
+      },
+      {
+        "type": "file",
+        "data": {
+          "label": "Comandos de consulta",
+          "filename": "docker-comandos.txt",
+          "contents": "docker --version\ndocker compose version\ndocker compose ps\n"
+        }
+      },
+      {
+        "type": "file",
+        "data": {
+          "label": "Requisitos de la práctica",
+          "filename": "docker-requisitos.txt",
+          "contents": "Motor: Docker instalado\nComplemento: Docker Compose\nProyecto: Directorio de trabajo propio\n"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "ssh",
+    "title": "Revisar tu cliente y tus archivos SSH",
+    "excerpt": "Comprueba la versión de OpenSSH y reconoce los archivos de configuración de tu usuario.",
+    "category": "Linux",
+    "tags": [
+      "SSH",
+      "Linux",
+      "Seguridad"
+    ],
+    "tone": "blue",
+    "cover": "cartoon/workspace.webp",
+    "reading_minutes": 9,
+    "difficulty": "Intermedio",
+    "status": "published",
+    "featured": false,
+    "content": [
+      {
+        "type": "paragraph",
+        "data": {
+          "html": "<p>Antes de crear claves nuevas, revisa qué cliente SSH tienes y si ya existe un directorio de configuración para tu usuario. Estas consultas no generan ni sustituyen claves.</p>"
+        }
+      },
+      {
+        "type": "heading",
+        "data": {
+          "text": "Antes de empezar",
+          "level": "h2"
+        }
+      },
+      {
+        "type": "table",
+        "data": {
+          "columns": [
+            "Requisito",
+            "Qué necesitas"
+          ],
+          "rows": [
+            {
+              "cells": "Cliente | OpenSSH"
+            },
+            {
+              "cells": "Servidor | Equipo de laboratorio"
+            },
+            {
+              "cells": "Acceso | Usuario autorizado"
+            }
+          ]
+        }
+      },
+      {
+        "type": "heading",
+        "data": {
+          "text": "Conoce tu configuración",
+          "level": "h2"
+        }
+      },
+      {
+        "type": "paragraph",
+        "data": {
+          "html": "<p>Ejecuta los comandos desde la terminal de tu equipo. El directorio <code>~/.ssh</code> pertenece al usuario actual.</p>"
+        }
+      },
+      {
+        "type": "code",
+        "data": {
+          "text": "ssh -V\nls -la ~/.ssh",
+          "label": "BASH · SSH",
+          "language": "bash"
+        }
+      },
+      {
+        "type": "heading",
+        "data": {
+          "text": "Reconocer tus archivos",
+          "level": "h2"
+        }
+      },
+      {
+        "type": "paragraph",
+        "data": {
+          "html": "<p>Una clave pública suele llevar la extensión <code>.pub</code>; su clave privada no. No publiques el contenido de la clave privada. El nombre de archivo puede ser distinto si lo elegiste al crearla.</p>"
+        }
+      },
+      {
+        "type": "notice",
+        "data": {
+          "title": "Ten en cuenta",
+          "text": "Si `~/.ssh` no existe, todavía no tienes ese directorio para el usuario actual. No significa por sí solo que el cliente SSH esté mal instalado.",
+          "tone": "info"
+        }
+      },
+      {
+        "type": "list",
+        "data": {
+          "title": "Puntos clave",
+          "ordered": false,
+          "items": [
+            {
+              "text": "`ssh -V` muestra la versión del cliente SSH."
+            },
+            {
+              "text": "`~/.ssh` es el directorio de configuración del usuario actual."
+            },
+            {
+              "text": "El archivo `.pub` contiene la clave pública; la clave privada no debe compartirse."
+            }
+          ]
+        }
+      },
+      {
+        "type": "heading",
+        "data": {
+          "text": "Archivos de apoyo",
+          "level": "h2"
+        }
+      },
+      {
+        "type": "file",
+        "data": {
+          "label": "Comandos de consulta",
+          "filename": "ssh-comandos.txt",
+          "contents": "ssh -V\nls -la ~/.ssh\n"
+        }
+      },
+      {
+        "type": "file",
+        "data": {
+          "label": "Requisitos de la práctica",
+          "filename": "ssh-requisitos.txt",
+          "contents": "Cliente: OpenSSH\nServidor: Equipo de laboratorio\nAcceso: Usuario autorizado\n"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "cloudpanel",
+    "title": "Revisar un servidor antes de instalar CloudPanel",
+    "excerpt": "Identifica la distribución y consulta el espacio disponible antes de desplegar el panel.",
+    "category": "Servidores",
+    "tags": [
+      "CloudPanel",
+      "Hosting",
+      "Servidores"
+    ],
+    "tone": "peach",
+    "cover": "cartoon/infrastructure.webp",
+    "reading_minutes": 14,
+    "difficulty": "Intermedio",
+    "status": "published",
+    "featured": false,
+    "content": [
+      {
+        "type": "paragraph",
+        "data": {
+          "html": "<p>Antes de instalar un panel, registra el sistema operativo y el espacio disponible del servidor. Estos datos te ayudarán a contrastar los requisitos de instalación.</p>"
+        }
+      },
+      {
+        "type": "heading",
+        "data": {
+          "text": "Antes de empezar",
+          "level": "h2"
+        }
+      },
+      {
+        "type": "table",
+        "data": {
+          "columns": [
+            "Requisito",
+            "Qué necesitas"
+          ],
+          "rows": [
+            {
+              "cells": "Equipo | Servidor de laboratorio"
+            },
+            {
+              "cells": "Dominio | Dominio o subdominio propio"
+            },
+            {
+              "cells": "Acceso | Administración autorizada"
+            }
+          ]
+        }
+      },
+      {
+        "type": "heading",
+        "data": {
+          "text": "Identifica el servidor",
+          "level": "h2"
+        }
+      },
+      {
+        "type": "paragraph",
+        "data": {
+          "html": "<p>Estas consultas muestran el nombre del equipo, los datos de la distribución y el uso de los sistemas de archivos.</p>"
+        }
+      },
+      {
+        "type": "code",
+        "data": {
+          "text": "hostname\ncat /etc/os-release\ndf -h",
+          "label": "BASH · SERVIDOR",
+          "language": "bash"
+        }
+      },
+      {
+        "type": "heading",
+        "data": {
+          "text": "Documentar el entorno",
+          "level": "h2"
+        }
+      },
+      {
+        "type": "paragraph",
+        "data": {
+          "html": "<p>Conserva el identificador y la versión de la distribución que aparecen en <code>/etc/os-release</code>. En <code>df -h</code>, revisa especialmente el sistema de archivos montado en <code>/</code>.</p>"
+        }
+      },
+      {
+        "type": "notice",
+        "data": {
+          "title": "Ten en cuenta",
+          "text": "Disponer de espacio y acceso al servidor no confirma la compatibilidad con CloudPanel. Comprueba los requisitos del panel antes de iniciar su instalación.",
+          "tone": "info"
+        }
+      },
+      {
+        "type": "list",
+        "data": {
+          "title": "Puntos clave",
+          "ordered": false,
+          "items": [
+            {
+              "text": "`hostname` muestra el nombre del equipo."
+            },
+            {
+              "text": "`/etc/os-release` identifica la distribución y su versión."
+            },
+            {
+              "text": "`df -h` muestra el espacio utilizado y disponible en los sistemas de archivos."
+            }
+          ]
+        }
+      },
+      {
+        "type": "heading",
+        "data": {
+          "text": "Archivos de apoyo",
+          "level": "h2"
+        }
+      },
+      {
+        "type": "file",
+        "data": {
+          "label": "Comandos de consulta",
+          "filename": "cloudpanel-comandos.txt",
+          "contents": "hostname\ncat /etc/os-release\ndf -h\n"
+        }
+      },
+      {
+        "type": "file",
+        "data": {
+          "label": "Requisitos de la práctica",
+          "filename": "cloudpanel-requisitos.txt",
+          "contents": "Equipo: Servidor de laboratorio\nDominio: Dominio o subdominio propio\nAcceso: Administración autorizada\n"
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,107 @@
+name: Publicar versión
+
+# Se ejecuta al subir un tag vX.Y.Z: prueba, genera el ZIP de instalación y el de actualización y publica la release.
+on:
+  push:
+    tags: ['v*.*.*']
+
+permissions:
+  contents: write
+  id-token: write
+  attestations: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Solqubit ${{ github.ref_name }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: mbstring, intl, zip, gd, bcmath, pdo_mysql, pdo_sqlite, exif, curl
+          tools: composer:v2
+          coverage: none
+
+      - name: Comprobar la versión y el changelog
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          version="$(sed -n "s/.*'version' => '\([0-9][0-9.]*\)'.*/\1/p" core/config/solqubit.php)"
+          if [ "$tag" != "$version" ]; then
+            echo "::error::El tag v$tag no coincide con la versión $version de core/config/solqubit.php"
+            exit 1
+          fi
+          if ! grep -q "^## \[$version\]" CHANGELOG.md; then
+            echo "::error::Falta la sección ## [$version] en CHANGELOG.md"
+            exit 1
+          fi
+          echo "VERSION=$version" >> "$GITHUB_ENV"
+
+      - name: Instalar dependencias y ejecutar las pruebas
+        working-directory: core
+        run: |
+          mkdir -p storage/app/media storage/framework/cache/data storage/framework/sessions storage/framework/views storage/logs bootstrap/cache
+          cp .env.example .env
+          composer install --prefer-dist --no-interaction --no-progress
+          php artisan key:generate --no-interaction
+          php -d memory_limit=1G vendor/bin/phpunit
+          vendor/bin/pint --test
+          node --test tests/JavaScript/*.mjs
+          rm .env
+
+      - name: Recuperar el manifiesto de la versión anterior
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          previous="$(gh release list --repo "$GITHUB_REPOSITORY" --exclude-drafts --exclude-pre-releases --limit 1 --json tagName --jq '.[0].tagName // empty')"
+          if [ -n "$previous" ]; then
+            mkdir -p "$RUNNER_TEMP/previous"
+            gh release download "$previous" --repo "$GITHUB_REPOSITORY" --pattern '*-manifest.json' --dir "$RUNNER_TEMP/previous"
+            echo "SOLQUBIT_PREVIOUS_MANIFEST=$(ls "$RUNNER_TEMP"/previous/*-manifest.json)" >> "$GITHUB_ENV"
+            echo "Se retirarán los archivos que ya no existan respecto a $previous."
+          else
+            echo "Primera versión publicada: no hay manifiesto anterior."
+          fi
+
+      - name: Generar los ZIP de instalación y de actualización
+        run: php scripts/build-release.php
+
+      - name: Atestación de procedencia
+        uses: actions/attest-build-provenance@v4
+        with:
+          subject-path: |
+            release/solqubit-${{ env.VERSION }}-instalacion.zip
+            release/solqubit-${{ env.VERSION }}-actualizacion.zip
+
+      - name: Publicar la release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          {
+            awk -v version="$VERSION" 'index($0, "## [" version "]") == 1 { found = 1; next } found && /^## / { exit } found' CHANGELOG.md
+            echo
+            echo "### Instalar"
+            echo
+            echo "Descarga **solqubit-$VERSION-instalacion.zip** (no \"Source code\"), extráelo en la carpeta del dominio y abre el dominio en el navegador. Guía completa: [docs/INSTALL.md](https://github.com/$GITHUB_REPOSITORY/blob/$GITHUB_REF_NAME/docs/INSTALL.md)."
+            echo
+            echo "### Actualizar"
+            echo
+            echo "En tu panel, abre **Actualizaciones** y pulsa **Descargar y validar**, o sube **solqubit-$VERSION-actualizacion.zip** sin descomprimirlo. Guía: [docs/UPDATE.md](https://github.com/$GITHUB_REPOSITORY/blob/$GITHUB_REF_NAME/docs/UPDATE.md)."
+          } > "$RUNNER_TEMP/notes.md"
+          gh release create "$GITHUB_REF_NAME" \
+            "release/solqubit-$VERSION-instalacion.zip" \
+            "release/solqubit-$VERSION-instalacion.zip.sha256" \
+            "release/solqubit-$VERSION-actualizacion.zip" \
+            "release/solqubit-$VERSION-actualizacion.zip.sha256" \
+            "release/solqubit-$VERSION-manifest.json" \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "Solqubit $VERSION" \
+            --notes-file "$RUNNER_TEMP/notes.md" \
+            --verify-tag

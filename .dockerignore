@@ -1,0 +1,10 @@
+.env
+test-artifacts
+release
+core/.env
+core/vendor
+core/node_modules
+core/storage
+core/bootstrap/cache
+core/database/*.sqlite*
+.git

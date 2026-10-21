@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="292" viewBox="0 0 760 292" fill="none">
+  <title>Laboratorio de monitoreo de un servidor web</title>
+  <desc>Nagios Core 192.168.1.10 envía comprobaciones ICMP y HTTP al puerto 80 de web01 192.168.1.50. Direcciones de ejemplo.</desc>
+  <rect width="760" height="292" rx="8" fill="#1B202B"/>
+  <text x="32" y="37" fill="#A7B5CB" font-family="monospace" font-size="11" letter-spacing="1">LABORATORIO / MONITOREO HTTP</text>
+  <rect x="32" y="81" width="218" height="126" rx="6" fill="#222C3E" stroke="#455C80"/>
+  <rect x="510" y="81" width="218" height="126" rx="6" fill="#2A263C" stroke="#625579"/>
+  <g stroke="#B9D6EF" stroke-width="2"><rect x="53" y="104" width="21" height="15" rx="2"/><path d="M57 111h3m5 0h5"/></g>
+  <text x="53" y="148" fill="#D9E5F7" font-family="Arial,sans-serif" font-size="19">Nagios Core</text>
+  <text x="53" y="177" fill="#AFBDD2" font-family="monospace" font-size="12">192.168.1.10</text>
+  <g stroke="#C9BDE9" stroke-width="2"><rect x="531" y="103" width="22" height="17" rx="2"/><path d="M531 109h22"/></g>
+  <text x="531" y="148" fill="#E2DAF3" font-family="Arial,sans-serif" font-size="19">web01</text>
+  <text x="531" y="177" fill="#C0B6D5" font-family="monospace" font-size="12">192.168.1.50</text>
+  <path d="M250 120h259m-7-5 7 5-7 5" stroke="#91B8E8" stroke-width="1.5"/>
+  <path d="M250 174h259m-7-5 7 5-7 5" stroke="#B9A3DD" stroke-width="1.5"/>
+  <text x="380" y="108" fill="#B9D6EF" text-anchor="middle" font-family="monospace" font-size="12">ICMP · host</text>
+  <text x="380" y="162" fill="#C9BDE9" text-anchor="middle" font-family="monospace" font-size="12">HTTP · puerto 80</text>
+  <text x="32" y="257" fill="#A7B5CB" font-family="Arial,sans-serif" font-size="12">Comprobaciones desde Nagios. No requiere agente para este caso.</text>
+</svg>

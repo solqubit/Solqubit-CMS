@@ -1,0 +1,14 @@
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.webp binary
+*.woff2 binary
+*.mp4 binary
+*.ico binary
+*.zip binary
+
+# Excluded from GitHub's automatic "Source code" archives.
+/.github export-ignore
+/compose.install.yaml export-ignore
+/compose.release-test.yaml export-ignore

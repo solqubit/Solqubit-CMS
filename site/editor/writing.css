@@ -1,0 +1,156 @@
+.sq-writing-page .fi-topbar-ctn,.sq-writing-page .fi-sidebar,.sq-writing-page .fi-sidebar-close-overlay {display:none!important}
+.sq-writing-page .fi-main-ctn {padding-inline-start:0!important;padding-top:0!important}
+.sq-writing-page .fi-main {max-width:none!important;padding:0!important}
+.sq-writing-page .fi-page {padding:0!important;gap:0!important}
+.sq-writing-page .fi-page-header-main-ctn {display:contents}
+.sq-writing-page .fi-page-content {padding:0 24px 40px}
+.sq-writing-header {position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:20px;min-height:76px;padding:12px 24px;background:var(--sq-paper);border-bottom:1px solid var(--sq-line)}
+.sq-writing-back {display:flex;align-items:center;gap:8px;color:var(--sq-muted);font-size:13px;font-weight:600;white-space:nowrap}
+.sq-writing-back svg {width:18px;height:18px}
+.sq-writing-heading {border-inline-start:1px solid var(--sq-line);padding-inline-start:20px;min-width:0;flex:1}
+.sq-writing-heading>span {font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--sq-muted)}
+.sq-writing-heading h1 {font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:260px}
+.sq-writing-actions {display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.sq-writing-actions .fi-actions {gap:8px}
+.sq-writing-grid {max-width:1500px;margin:0 auto;padding:30px 24px}
+.sq-writing-grid > .fi-grid {display:grid!important;grid-template-columns:minmax(0,1fr) 310px!important;align-items:start;gap:32px!important}
+.sq-writing-document > .fi-grid {gap:0!important}
+.sq-writing-page [id="content.form-actions"] {display:none}
+.sq-writing-document {min-width:0;gap:0!important;background:var(--sq-paper);border:1px solid var(--sq-line);border-radius:18px;box-shadow:0 4px 20px #17132505}
+.sq-writing-document .fi-section {background:transparent!important;border:none!important;box-shadow:none!important;border-radius:0}
+.sq-document-title .fi-section-header,.sq-document-content .fi-section-header {display:none}
+.sq-document-title .fi-section-content {max-width:840px;margin:auto;padding:36px clamp(20px,4vw,54px) 16px!important}
+.sq-document-title .fi-fo-field-label-ctn {display:none}
+.sq-document-title .fi-input-wrp {background:transparent!important;box-shadow:none!important;border:none!important}
+.sq-document-title textarea {font-size:clamp(29px,3vw,42px)!important;font-weight:750!important;letter-spacing:-.04em;line-height:1.2!important;padding:0!important;resize:none;color:var(--sq-ink)}
+.sq-document-content .fi-section-content {padding:0!important;border:0!important}
+.sq-document-content .fi-fo-field-content {gap:0}
+.sq-writing-settings {min-width:0;gap:14px!important}
+.sq-writing-settings .fi-section {border:1px solid var(--sq-line);box-shadow:none;border-radius:12px;background:var(--sq-paper)}
+.sq-writing-settings .fi-section-header {padding:16px!important;gap:8px}
+.sq-writing-settings .fi-section-header-heading {font-size:13px}
+.sq-writing-settings .fi-section-content {padding:16px!important;gap:16px}
+.sq-writing-settings .fi-section-header-description,.sq-writing-settings .fi-fo-field-helper-text {font-size:12px;line-height:1.6}
+.sq-writing-settings .fi-fieldset {grid-column:1/-1}
+.sq-settings-hidden .sq-writing-grid {max-width:1100px}
+.sq-settings-hidden .sq-writing-grid > .fi-grid {grid-template-columns:minmax(0,1fr)!important}
+.sq-settings-hidden .sq-writing-grid > .fi-grid > .fi-grid-col:has(.sq-writing-settings) {display:none}
+.sq-settings-hidden .sq-writing-settings {display:none}
+.sq-writing-page .solqubit-editor {border:0!important;border-radius:0;background:transparent;box-shadow:none!important}
+.sq-writing-page .solqubit-editor .fi-fo-rich-editor-toolbar {border-radius:0;border-top:1px solid var(--sq-line);padding:10px 16px;background:var(--sq-paper)!important}
+.sq-writing-page .solqubit-editor .fi-fo-rich-editor-toolbar.fi-fo-rich-editor-sticky-toolbar {top:76px!important}
+.sq-writing-page .solqubit-editor .fi-fo-rich-editor-content {background:transparent;padding:0}
+.sq-writing-page .solqubit-editor .tiptap {border:0;border-radius:0;box-shadow:none;max-width:840px;padding:30px clamp(20px,4vw,54px) 80px;min-height:60vh}
+.sq-writing-page .solqubit-editor .fi-fo-rich-editor-custom-block-header {opacity:0;transition:opacity .15s;background:var(--sq-paper);border:1px solid var(--sq-line);border-radius:8px;position:absolute;top:-32px;right:0;padding:4px 8px;z-index:3}
+.sq-writing-page .solqubit-editor div[data-type=customBlock] {position:relative;border:0;border-radius:8px;overflow:visible;background:transparent;box-shadow:none;margin:30px 0}
+.sq-writing-page .solqubit-editor div[data-type=customBlock]:is(:hover,:focus-within,.ProseMirror-selectednode)>.fi-fo-rich-editor-custom-block-header {opacity:1}
+.sq-writing-page .solqubit-editor .fi-fo-rich-editor-custom-block-preview {padding:0;background:transparent}
+.sq-writing-page .solqubit-editor .fi-fo-rich-editor-custom-block-heading {font-size:11px}
+.sq-writing-page .solqubit-editor .sq-block-preview :is(figure,.article-notice,.article-summary,.attachment,.table-wrap) {margin:0}
+.sq-writing-page .solqubit-editor .sq-block-preview img {border-radius:14px}
+.sq-writing-page .solqubit-editor .sq-block-preview iframe {pointer-events:none}
+.sq-block-controls {display:flex;align-items:center;gap:4px;position:absolute;right:0;top:-32px;z-index:4;opacity:0;pointer-events:none;background:var(--sq-paper);border:1px solid var(--sq-line);border-radius:8px;padding:3px;box-shadow:0 3px 10px #0001}
+.sq-inline-block:is(:hover,:focus-within,.ProseMirror-selectednode) .sq-block-controls {opacity:1;pointer-events:auto}
+.sq-block-controls button {font-size:12px;padding:3px 7px;border-radius:5px;color:var(--sq-muted);background:var(--sq-paper)}
+.sq-block-controls button:hover {background:var(--sq-violet-soft);color:var(--sq-violet)}
+.sq-inline-block {position:relative;--inline-color:var(--sq-blue);--inline-bg:var(--sq-blue-soft)}
+.sq-inline-surface {background:var(--inline-bg);border-inline-start:3px solid var(--inline-color);border-radius:14px;padding:20px 24px}
+.sq-inline-block[data-tone=note] {--inline-color:var(--sq-violet);--inline-bg:var(--sq-violet-soft)}
+.sq-inline-block[data-tone=warning] {--inline-color:var(--sq-peach);--inline-bg:var(--sq-peach-soft)}
+.sq-inline-block input,.sq-inline-block textarea {display:block;width:100%;background:transparent!important;border:0;box-shadow:none!important;outline:none;color:var(--sq-ink);font:inherit;line-height:1.8;padding:2px 0;resize:none}
+.sq-inline-block input {font-weight:700;color:var(--inline-color)}
+.sq-inline-block textarea {min-height:60px;overflow:hidden}
+.sq-inline-block :is(input,textarea):focus {outline:none;border:0;box-shadow:none}
+.sq-inline-block :is(input,textarea)::placeholder {color:var(--sq-muted);opacity:.75}
+.sq-inline-block .sq-inline-tone {float:right;max-width:130px;padding:3px 8px;margin:0 0 8px 12px;font-size:11px;border:1px solid var(--sq-line);border-radius:8px;color:var(--inline-color);background:var(--sq-paper)}
+.sq-inline-block[data-id=code] .sq-inline-surface,.sq-inline-block[data-id=output] .sq-inline-surface {background:var(--sq-canvas);border:1px solid var(--sq-line)}
+.sq-inline-block[data-id=code] textarea,.sq-inline-block[data-id=output] textarea {font-family:ui-monospace,monospace;font-size:13px;line-height:1.8;white-space:pre;overflow-x:auto;min-height:100px}
+.sq-inline-block .sq-inline-row {display:flex;align-items:flex-start;gap:10px}
+.sq-inline-block .sq-inline-row input {font-weight:400;color:var(--sq-ink)}
+.sq-inline-block .sq-inline-row>span {padding-top:4px;color:var(--inline-color)}
+.sq-inline-block .sq-inline-row>button,.sq-inline-add {font-size:12px;color:var(--inline-color);padding:4px 8px}
+.sq-inline-add {border:1px dashed var(--sq-line);border-radius:8px;margin-top:10px}
+.sq-inline-block .sq-inline-link-row {margin-bottom:12px}
+.sq-inline-block .sq-inline-link-row input:last-child {font-size:12px;color:var(--sq-muted);font-weight:400}
+.solqubit-editor .tiptap table {border-collapse:collapse;width:100%;table-layout:fixed;margin:24px 0}
+.solqubit-editor .tiptap :is(td,th) {min-width:80px;border:1px solid var(--sq-line);padding:10px 12px;position:relative;vertical-align:top}
+.solqubit-editor .tiptap th {background:var(--sq-blue-soft);color:var(--sq-blue);font-weight:700}
+.solqubit-editor .tiptap td>p,.solqubit-editor .tiptap th>p {margin:0}
+.solqubit-editor .tiptap .selectedCell::after {background:#7863ad22;position:absolute;inset:0;content:'';pointer-events:none}
+.solqubit-editor .tiptap pre {border:1px solid var(--sq-line);border-radius:12px;background:var(--sq-canvas);padding:20px;font:13px/1.8 ui-monospace,monospace;overflow-x:auto}
+.solqubit-editor .tiptap pre code {background:none;padding:0;color:var(--sq-ink)}
+.sq-selection-tools {position:fixed;z-index:45;display:flex;gap:3px;align-items:center;padding:5px;background:var(--sq-paper);color:var(--sq-ink);border:1px solid var(--sq-line);border-radius:9px;box-shadow:0 5px 20px #0002}
+.sq-selection-tools[hidden] {display:none}
+.sq-selection-tools button {padding:4px 7px;font-size:12px;border-radius:5px;white-space:nowrap}
+.sq-selection-tools button:hover {background:var(--sq-violet-soft)}
+.sq-paste-status {font-size:12px;color:var(--sq-muted);padding:8px 18px;background:var(--sq-paper)}
+.sq-paste-status:empty {display:none}
+@media(max-width:1099px){.sq-writing-grid {padding:20px 12px}.sq-writing-grid > .fi-grid {grid-template-columns:minmax(0,1fr)!important}.sq-writing-settings {position:fixed;inset:76px 0 0 auto;width:min(360px,100vw);overflow-y:auto;background:var(--sq-canvas);padding:16px;z-index:25;border-left:1px solid var(--sq-line);box-shadow:-10px 0 30px #0001}.sq-writing-header {gap:12px;padding:12px 16px}.sq-writing-heading {display:none}.sq-writing-actions {margin-left:auto}.sq-writing-page .fi-page-content {padding-inline:8px}}
+@media(max-width:640px){.sq-writing-header {flex-wrap:wrap;min-height:76px;gap:8px;padding:10px 12px}.sq-writing-back {font-size:12px}.sq-writing-actions {gap:5px}.sq-writing-actions .fi-btn {font-size:12px;padding:7px 8px}.sq-writing-actions .fi-actions {gap:4px}.sq-writing-actions .fi-actions .fi-btn-label {max-width:96px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.sq-writing-grid {padding:16px 0;gap:16px!important}.sq-document-title .fi-section-content {padding:24px 18px 10px!important}.sq-writing-page .solqubit-editor .tiptap {padding:24px 18px 60px}.sq-writing-page .solqubit-editor .fi-fo-rich-editor-toolbar.fi-fo-rich-editor-sticky-toolbar {position:static}.sq-inline-surface {padding:16px}.sq-block-controls {opacity:1;pointer-events:auto}.sq-selection-tools {max-width:calc(100vw - 16px);flex-wrap:wrap}.sq-writing-settings {top:90px}}
+
+.sq-writing-page .solqubit-editor.sq-focus-mode .fi-fo-rich-editor-toolbar.fi-fo-rich-editor-sticky-toolbar {top:0!important}@media(max-width:640px){
+  .sq-writing-page .solqubit-editor .fi-fo-rich-editor-toolbar-group:nth-child(3){display:flex;flex-wrap:nowrap;overflow-x:auto;max-width:100%;padding-bottom:8px}
+  .sq-writing-page .solqubit-editor .fi-fo-rich-editor-toolbar-group:nth-child(3)::before{content:'INSERTAR →';white-space:nowrap}
+  .sq-writing-page .solqubit-editor .fi-fo-rich-editor-toolbar-group:nth-child(3) .fi-fo-rich-editor-tool{flex-shrink:0;white-space:nowrap}
+}
+@media(max-width:640px){
+  .sq-writing-actions > .fi-ac {gap:4px}
+  .sq-writing-actions > .fi-ac > .fi-btn,.sq-writing-actions .fi-ac-btn-group {font-size:0;gap:0;padding:8px}
+  .sq-writing-settings {top:76px}
+}
+.sq-document-title textarea{font-family:'Nunito',system-ui,sans-serif!important;font-weight:800!important;letter-spacing:-.01em}
+.sq-inline-surface{border-inline-start:0}
+.sq-inline-block[data-id=code] .sq-inline-surface,.sq-inline-block[data-id=output] .sq-inline-surface{border:0}
+.sq-inline-block[data-id=list] .sq-inline-row{align-items:baseline;gap:8px;margin:0}
+.sq-inline-block[data-id=list] .sq-inline-row>span{padding-top:0;line-height:1.6}
+.sq-inline-block[data-id=list] .sq-inline-row textarea,.sq-inline-block[data-id=list] .sq-inline-row input{min-height:0;line-height:1.6;padding:3px 0}
+/* Live preview: the document on the left, the real page on the right. The settings column steps aside meanwhile. */
+.sq-live-preview-panel {display:none}
+.sq-preview-open .sq-live-preview-panel {display:flex;flex-direction:column;position:fixed;top:76px;right:0;bottom:0;width:50vw;z-index:26;background:var(--sq-canvas);border-left:1px solid var(--sq-line)}
+.sq-preview-open .sq-writing-grid {max-width:none;margin-right:50vw}
+.sq-preview-open .sq-writing-grid > .fi-grid {grid-template-columns:minmax(0,1fr)!important}
+.sq-preview-open .sq-writing-settings,.sq-preview-open .sq-writing-grid > .fi-grid > .fi-grid-col:has(.sq-writing-settings) {display:none}
+.sq-preview-toolbar {display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 14px;background:var(--sq-paper);border-bottom:1px solid var(--sq-line);font-size:12px;color:var(--sq-muted)}
+.sq-preview-segment {display:inline-flex;padding:3px;border-radius:9px;background:var(--sq-canvas)}
+.sq-preview-segment button {padding:5px 10px;border-radius:7px;font-weight:600;color:var(--sq-muted)}
+.sq-preview-segment button[aria-pressed=true] {background:var(--sq-violet);color:#fff}
+.sq-preview-status {margin-left:auto}
+.sq-preview-close {padding:5px 10px;border-radius:7px;background:var(--sq-violet-soft);color:var(--sq-violet);font-weight:600}
+.sq-preview-viewport {position:relative;flex:1;overflow:hidden}
+.sq-preview-viewport iframe {position:absolute;top:0;left:0;border:0;background:#fff;transform-origin:0 0}
+.sq-preview-viewport[data-device=mobile] iframe {left:50%;translate:-50% 0;transform-origin:50% 0;box-shadow:0 0 0 1px var(--sq-line)}
+@media(max-width:1099px){.sq-preview-open .sq-live-preview-panel {width:100vw;left:0}.sq-preview-open .sq-writing-grid {margin-right:0}}
+.sq-writing-actions [aria-controls=sq-live-preview][aria-pressed=true] {background:var(--sq-violet-soft)!important;color:var(--sq-violet)!important;opacity:1}
+/* Ajustes → Portada: the real home page stays visible next to its sections. */
+.sq-live-preview-panel.is-docked {display:flex;flex-direction:column;position:sticky;top:84px;height:calc(100vh - 110px);min-height:520px;border:1px solid var(--sq-line);border-radius:14px;overflow:hidden;background:var(--sq-canvas)}
+@media(max-width:1279px){.sq-live-preview-panel.is-docked {position:relative;top:0;height:640px}}
+/* The document starts like the published entry: header image, title and lead. */
+.sq-document-cover .fi-section-header{display:none}
+.sq-document-cover .fi-section-content{max-width:840px;margin:auto;padding:28px clamp(20px,4vw,54px) 0!important}
+.sq-document-cover .fi-fo-field-label-ctn{font-size:12px}
+.sq-cover-preview{display:block;width:100%;max-height:300px;object-fit:cover;border-radius:16px;margin-top:4px}
+.sq-document-lead textarea{font-size:17px!important;line-height:1.7!important;color:var(--sq-muted)!important;padding:0!important;resize:none}
+.sq-document-title .sq-document-lead .fi-input-wrp{background:transparent!important;box-shadow:none!important;border:none!important}
+.sq-document-title .sq-document-lead textarea{font-family:'DM Sans',system-ui,sans-serif!important;font-weight:400!important;letter-spacing:0!important}
+/* Block panel: cards grouped by section on the left, opened from «Bloques» in the header. */
+.sq-inserter-toggle {display:inline-flex;align-items:center;gap:7px;padding:7px 12px;border-radius:9px;font-size:13px;font-weight:600;color:var(--sq-ink);background:var(--sq-canvas)}
+.sq-inserter-toggle svg {width:17px;height:17px}
+.sq-inserter-toggle .sq-inserter-close,.sq-inserter-open .sq-inserter-toggle .sq-inserter-plus {display:none}
+.sq-inserter-open .sq-inserter-toggle {background:var(--sq-violet);color:#fff}
+.sq-inserter-open .sq-inserter-toggle .sq-inserter-close {display:block}
+.sq-block-inserter {display:none}
+.sq-inserter-open .sq-block-inserter {display:block;position:fixed;top:76px;left:0;bottom:0;width:320px;z-index:26;overflow-y:auto;background:var(--sq-paper);border-right:1px solid var(--sq-line);padding:14px 10px 24px}
+.sq-inserter-open .sq-writing-grid {margin-left:320px;max-width:none}
+.sq-inserter-search {display:flex;align-items:center;gap:8px;margin:0 4px 14px;padding:9px 12px;border-radius:10px;background:var(--sq-canvas);color:var(--sq-muted)}
+.sq-inserter-search svg {width:16px;height:16px;flex-shrink:0}
+.sq-inserter-search input {flex:1;min-width:0;border:0;outline:0;background:transparent;color:var(--sq-ink);font-size:14px;box-shadow:none}
+.sq-inserter-section h3 {margin:6px 6px 6px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--sq-muted)}
+.sq-inserter-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;margin-bottom:12px}
+.sq-inserter-tile {display:flex;flex-direction:column;align-items:center;gap:7px;padding:12px 4px 10px;border-radius:10px;font-size:12px;line-height:1.3;text-align:center;color:var(--sq-ink)}
+.sq-inserter-tile svg {width:24px;height:24px}
+.sq-inserter-tile:is(:hover,:focus-visible) {background:var(--sq-violet-soft);color:var(--sq-violet)}
+.sq-inserter-tile[hidden],.sq-inserter-section[hidden] {display:none}
+.sq-inserter-empty {padding:12px 8px;font-size:13px;color:var(--sq-muted)}
+/* The panel replaces «Imagen» and «Insertar» in the writing toolbar; the hidden tools still do the inserting. */
+.sq-writing-document .solqubit-editor :is([data-rich-editor-tool=sq_image],[data-rich-editor-tool=sq_insert]) {display:none!important}
+@media(max-width:1099px){.sq-inserter-open .sq-block-inserter {width:100vw}.sq-inserter-open .sq-writing-grid {margin-left:0}.sq-inserter-toggle span {display:none}}

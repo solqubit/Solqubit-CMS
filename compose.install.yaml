@@ -1,0 +1,19 @@
+services:
+  installer:
+    image: solqubit-cms-web
+    ports:
+      - "127.0.0.1:8090:80"
+    volumes:
+      - ./core:/source/core:ro
+      - ./site:/var/www/site:ro
+      - installer_core:/var/www/core
+      - vendor:/var/www/core/vendor:ro
+      - ./scripts/installer-entrypoint.sh:/usr/local/bin/solqubit-installer:ro
+      - ./test-artifacts/install-session:/run/solqubit-install:ro
+    command: ["sh", "/usr/local/bin/solqubit-installer"]
+    depends_on:
+      database:
+        condition: service_healthy
+    restart: unless-stopped
+volumes:
+  installer_core:

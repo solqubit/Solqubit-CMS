@@ -1,0 +1,17 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import crypto from 'node:crypto';
+import { spawnSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const database=process.env.RELEASE_QA_DATABASE || 'solqubit_releaseqa';
+if(!/^solqubit_releaseqa[0-9]*$/.test(database))throw Error('Invalid isolated test database name');
+const file=path.join(root,`test-artifacts/${database}-access.json`);
+fs.mkdirSync(path.dirname(file),{recursive:true,mode:0o700});
+const credentials=fs.existsSync(file)?JSON.parse(fs.readFileSync(file,'utf8')):{db_password:crypto.randomBytes(24).toString('hex'),email:'release-admin@solqubit.local',password:crypto.randomBytes(18).toString('hex')+'9a'};
+fs.writeFileSync(file,JSON.stringify(credentials,null,2),{mode:0o600});
+if(!/^[a-f0-9]{48}$/.test(credentials.db_password))throw Error('Invalid generated test credential');
+const sql=`CREATE DATABASE IF NOT EXISTS ${database} CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;\nCREATE USER IF NOT EXISTS '${database}'@'%' IDENTIFIED BY '${credentials.db_password}';\nGRANT ALL PRIVILEGES ON ${database}.* TO '${database}'@'%';\n`;
+const result=spawnSync('docker',['compose','-p','solqubit-cms','exec','-T','database','sh','-c','exec mariadb -uroot -p"$MARIADB_ROOT_PASSWORD"'],{cwd:root,input:sql,encoding:'utf8'});
+if(result.status!==0)throw Error('Could not prepare isolated release database.');
+console.log('Base de datos separada para comprobar el paquete preparada.');

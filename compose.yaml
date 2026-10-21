@@ -1,0 +1,37 @@
+name: solqubit-cms
+services:
+  web:
+    build: .
+    command: ["sh", "-c", "chown www-data:www-data /var/www/core /var/www/core/.env && chown -R www-data:www-data /var/www/core/storage /var/www/core/bootstrap/cache && exec apache2-foreground"]
+    ports:
+      - "127.0.0.1:8088:80"
+    environment:
+      # Local builds are not published on GitHub: let this development site install them.
+      SOLQUBIT_ALLOW_UNVERIFIED: "true"
+    volumes:
+      - ./core:/var/www/core
+      - ./site:/var/www/site
+      - vendor:/var/www/core/vendor
+    depends_on:
+      database:
+        condition: service_healthy
+    restart: unless-stopped
+  database:
+    image: mariadb:11.8
+    environment:
+      MARIADB_DATABASE: solqubit
+      MARIADB_USER: solqubit
+      MARIADB_PASSWORD: ${SOLQUBIT_DB_PASSWORD:?Create .env using scripts/dev-setup.mjs}
+      MARIADB_ROOT_PASSWORD: ${SOLQUBIT_DB_ROOT_PASSWORD:?Create .env using scripts/dev-setup.mjs}
+    volumes:
+      - database:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+    restart: unless-stopped
+volumes:
+  database:
+  vendor:
+

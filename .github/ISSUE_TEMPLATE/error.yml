@@ -1,0 +1,44 @@
+name: Informar de un error
+description: Algo no funciona como debería.
+labels: [error]
+body:
+  - type: markdown
+    attributes:
+      value: Gracias por avisar. Si es un fallo de seguridad, no lo publiques aquí; lee SECURITY.md.
+  - type: input
+    id: version
+    attributes:
+      label: Versión de Solqubit
+      description: Aparece en Actualizaciones, en el panel.
+      placeholder: "1.0.0"
+    validations:
+      required: true
+  - type: input
+    id: hosting
+    attributes:
+      label: Alojamiento
+      description: Panel, servidor web, versión de PHP y base de datos.
+      placeholder: "cPanel con LiteSpeed, PHP 8.4, MariaDB 10.11"
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Pasos para reproducirlo
+      placeholder: |
+        1. Entra en…
+        2. Pulsa…
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Qué esperabas y qué ocurrió
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Registros
+      description: Las últimas líneas de storage/logs/laravel.log del motor, si las hay. Quita datos personales.
+      render: text

@@ -1,0 +1,122 @@
+.solqubit-editor{border-radius:18px;--sq-border:#ded9ed;--sq-accent:#6854b5}
+.solqubit-editor .fi-fo-rich-editor-toolbar{background:#f8f7fc;border-bottom:1px solid var(--sq-border);padding:9px;gap:6px;flex-wrap:wrap}
+.solqubit-editor .fi-fo-rich-editor-toolbar-group{flex-wrap:wrap}
+.solqubit-editor [data-rich-editor-tool^=sq_]{font-size:12px;gap:5px;border-radius:9px}
+.solqubit-editor .fi-fo-rich-editor-content{padding:28px clamp(18px,4vw,48px);font-size:16px;line-height:1.85;min-height:480px}
+.solqubit-editor .tiptap:focus{outline:none}
+.solqubit-editor h2{font-size:28px;color:#6652a9;margin:26px 0 12px}
+.solqubit-editor h3{font-size:22px;color:#386b99;margin:22px 0 10px}
+.sq-block-preview{font:14px/1.7 system-ui;color:#302e43;margin:6px 0}
+.sq-block-preview .icon{display:inline-block;width:18px;height:18px;flex-shrink:0}
+.sq-block-preview img,.sq-block-preview video{display:block;max-width:100%;max-height:420px;object-fit:contain;margin:auto;border-radius:12px}
+.sq-block-preview .article-image-trigger{width:100%;padding:0;border:0;background:transparent}.sq-block-preview .article-image-trigger>span{display:none}
+.sq-block-preview figure{margin:0}.sq-block-preview figcaption{font-size:12px;color:#777083;margin:10px 0}
+.sq-block-preview .video-frame{aspect-ratio:16/9}.sq-block-preview iframe{border:0;width:100%;height:100%}
+.sq-block-preview .code-block,.sq-block-preview .terminal-output{border-radius:12px;background:#202535;color:#e5e5ef;overflow:hidden}
+.sq-block-preview .code-top,.sq-block-preview .terminal-output figcaption{display:flex;justify-content:space-between;gap:10px;padding:10px 16px;background:#2f3548;color:#bdd5f2;margin:0}
+.sq-block-preview .code-top>span{display:flex;gap:8px;align-items:center}.sq-block-preview .copy-button{display:none}
+.sq-block-preview pre{padding:18px;overflow-x:auto;font:13px/1.7 ui-monospace,monospace;white-space:pre;margin:0;background:transparent;color:inherit}
+.sq-block-preview .article-notice,.sq-block-preview .article-summary{display:flex;gap:10px;padding:18px;border-radius:12px;background:#f0edfa;border:1px solid #dbd4eb}
+.sq-block-preview .article-summary{display:block}.sq-block-preview .article-notice.notice-warning{background:#fff1de;border-color:#e8d0aa}
+.sq-block-preview .attachment{display:flex;gap:16px;align-items:center;padding:18px;border:1px solid #dbd4eb;border-radius:12px;background:#f7f5fb}
+.sq-block-preview .attachment small{display:block;color:#777083}.sq-block-preview .attachment-download{margin-left:auto;display:flex;gap:7px;color:#6854b5}
+.sq-block-preview table{border-collapse:collapse;width:100%}.sq-block-preview th,.sq-block-preview td{border:1px solid #dbd4eb;padding:10px 14px;text-align:left}.sq-block-preview th{background:#f0edfa}
+.sq-block-preview summary{cursor:pointer;padding:15px;border-bottom:1px solid #ded9ed}.sq-block-preview summary .icon{float:right}
+.sq-block-preview .article-references{padding-left:20px}.sq-block-preview a{color:#6854b5}.sq-block-placeholder{padding:14px;color:#8d5f27;background:#fff4df;border-radius:10px}
+.sq-slash-menu{position:fixed;z-index:1000;width:min(290px,calc(100vw - 16px));overflow-y:auto;padding:6px;background:white;border:1px solid #ded9ed;border-radius:14px;box-shadow:0 14px 45px #201b4026}
+.sq-slash-menu[hidden],.sq-live-preview[hidden]{display:none!important}
+.sq-slash-menu button{display:flex;flex-direction:column;width:100%;padding:10px 12px;border:0;border-radius:9px;text-align:left;background:transparent;color:#302e43;cursor:pointer}
+.sq-slash-menu button[aria-selected=true],.sq-slash-menu button:hover{background:#eee9fc;color:#5942a4}.sq-slash-menu strong{font-size:14px}.sq-slash-menu span{font-size:12px;color:#797187}.sq-slash-menu p{padding:14px;font-size:13px}
+.sq-live-preview{border:1px solid #ded9ed;border-radius:16px;margin-top:18px;overflow:hidden}.sq-preview-bar{display:flex;align-items:center;flex-wrap:wrap;gap:12px;padding:12px 16px;background:#f7f5fc;font-size:12px;color:#655a82}.sq-preview-bar span{flex:1;min-width:180px}.sq-preview-bar button,.sq-preview-bar select{padding:6px 10px;border:1px solid #d7d0e8;border-radius:8px;background:white;color:#5942a4}.sq-live-preview iframe{display:block;width:100%;height:640px;border:0;background:white}
+.dark .solqubit-editor .fi-fo-rich-editor-toolbar,.dark .sq-preview-bar{background:#272433;color:#d4c8ee}.dark .sq-block-preview{color:#e7e1ef}.dark .sq-block-preview .article-notice,.dark .sq-block-preview .article-summary,.dark .sq-block-preview .attachment,.dark .sq-block-preview th{background:#322d42;border-color:#554768}.dark .sq-block-preview a,.dark .solqubit-editor h2{color:#c4afea}.dark .solqubit-editor h3{color:#9fcbed}
+@media(max-width:640px){.solqubit-editor .fi-fo-rich-editor-content{padding:20px 16px}.solqubit-editor [data-rich-editor-tool^=sq_]{font-size:11px}.sq-live-preview iframe{height:500px}}
+.sq-live-preview{grid-column:1/-1}
+
+/* Writing surface and tools share the administration palette in both modes. */
+.solqubit-editor{--sq-border:var(--sq-line);--sq-accent:var(--sq-violet);border:1px solid var(--sq-line);background:var(--sq-canvas);overflow:visible;border-radius:16px}
+.solqubit-editor [data-rich-editor-key]{width:100%;min-width:0}
+.solqubit-editor .fi-fo-rich-editor-main{min-width:0}
+.solqubit-editor .fi-fo-rich-editor-toolbar,.dark .solqubit-editor .fi-fo-rich-editor-toolbar{background:var(--sq-paper);border-color:var(--sq-line);padding:12px;gap:8px;border-radius:16px 16px 0 0;z-index:5}
+.solqubit-editor .fi-fo-rich-editor-toolbar-group{gap:3px;padding:4px;background:var(--sq-canvas);border:1px solid var(--sq-line);border-radius:10px}
+.solqubit-editor .fi-fo-rich-editor-toolbar-group:nth-child(4){margin-inline-start:auto;background:transparent;border-color:transparent}
+.solqubit-editor .fi-fo-rich-editor-toolbar-group:nth-child(n+5){background:transparent;border-color:transparent;padding:3px}
+.solqubit-editor .fi-fo-rich-editor-tool{min-height:32px;border-radius:7px}
+.solqubit-editor [data-rich-editor-tool^=sq_]{padding:7px 9px;color:var(--sq-violet);background:var(--sq-violet-soft);font-size:12px;font-weight:600}
+.solqubit-editor :is([data-rich-editor-tool=sq_image],[data-rich-editor-tool=sq_video],[data-rich-editor-tool=sq_media_video],[data-rich-editor-tool=sq_file]){color:var(--sq-blue);background:var(--sq-blue-soft)}
+.solqubit-editor :is([data-rich-editor-tool=sq_code],[data-rich-editor-tool=sq_output],[data-rich-editor-tool=sq_table]){color:var(--sq-peach);background:var(--sq-peach-soft)}
+.solqubit-editor [data-rich-editor-tool=sq_focus]{background:var(--sq-canvas);color:var(--sq-muted)}
+.solqubit-editor [data-rich-editor-tool=sq_preview]{box-shadow:inset 0 0 0 1px var(--sq-line)}
+.solqubit-editor .fi-fo-rich-editor-tool:hover{filter:brightness(.95)}
+.solqubit-editor .fi-fo-rich-editor-content{padding:24px;background:var(--sq-canvas);color:var(--sq-ink)}
+.solqubit-editor .tiptap{width:100%;max-width:840px;min-height:480px;margin:0 auto;padding:30px clamp(18px,3vw,42px);border:1px solid var(--sq-line);border-radius:10px;background:var(--sq-paper);box-shadow:0 3px 14px #17132506;line-height:1.85;font-size:16px;overflow-wrap:anywhere}
+.solqubit-editor .tiptap>p{margin:0 0 16px}.solqubit-editor .tiptap>h2{font-size:28px;font-weight:750;letter-spacing:-.035em;line-height:1.3;margin:32px 0 16px;color:var(--sq-violet)}
+.solqubit-editor .tiptap>h3{font-size:22px;font-weight:700;line-height:1.4;margin:24px 0 12px;color:var(--sq-blue)}
+.solqubit-editor .tiptap>blockquote{border-inline-start:3px solid var(--sq-violet);padding:14px 20px;border-radius:0 10px 10px 0;background:var(--sq-violet-soft);color:var(--sq-ink);font-style:normal}
+.solqubit-editor .tiptap>ul,.solqubit-editor .tiptap>ol{padding-inline-start:26px}.solqubit-editor .tiptap li::marker{color:var(--sq-violet)}
+.solqubit-editor div[data-type=customBlock]{--block-color:var(--sq-violet);--block-bg:var(--sq-violet-soft);border:1px solid var(--sq-line);border-inline-start:3px solid var(--block-color);border-radius:12px;overflow:hidden;margin:22px 0;box-shadow:none;--tw-ring-shadow:0 0 #0000}
+.solqubit-editor div[data-type=customBlock].ProseMirror-selectednode{outline:2px solid var(--block-color);outline-offset:3px}
+.solqubit-editor div[data-type=customBlock]:is([data-id=image],[data-id=video],[data-id=media_video],[data-id=file]){--block-color:var(--sq-blue);--block-bg:var(--sq-blue-soft)}
+.solqubit-editor div[data-type=customBlock]:is([data-id=code],[data-id=output],[data-id=table]){--block-color:var(--sq-peach);--block-bg:var(--sq-peach-soft)}
+.solqubit-editor .fi-fo-rich-editor-custom-block-header{padding:7px 12px;gap:10px;align-items:center;background:var(--block-bg);border-bottom:1px solid var(--sq-line)}
+.solqubit-editor .fi-fo-rich-editor-custom-block-heading{font-size:11px;font-weight:700;letter-spacing:.035em;color:var(--block-color);margin:0}
+.solqubit-editor .fi-fo-rich-editor-custom-block-header .fi-icon-btn{width:27px;height:27px}.solqubit-editor .fi-fo-rich-editor-custom-block-header .fi-icon-btn svg{width:17px;height:17px}
+.solqubit-editor .fi-fo-rich-editor-custom-block-preview{padding:14px;background:var(--sq-paper)}
+.sq-block-preview,.dark .sq-block-preview{color:var(--sq-ink)}
+.sq-block-preview figcaption,.sq-block-preview .attachment small{color:var(--sq-muted)}
+.sq-block-preview .article-notice,.sq-block-preview .article-summary,.sq-block-preview .attachment,.sq-block-preview th,.dark .sq-block-preview .article-notice,.dark .sq-block-preview .article-summary,.dark .sq-block-preview .attachment,.dark .sq-block-preview th{background:var(--sq-violet-soft);border-color:var(--sq-line)}
+.sq-block-preview .article-notice.notice-warning,.dark .sq-block-preview .article-notice.notice-warning{background:var(--sq-peach-soft);border-color:var(--sq-peach)}
+.sq-block-preview th,.sq-block-preview td{border-color:var(--sq-line)}.sq-block-preview a,.dark .sq-block-preview a{color:var(--sq-violet)}
+.sq-document-footer{grid-column:1/-1;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid var(--sq-line);padding:12px 18px;color:var(--sq-muted);font-size:11px;background:var(--sq-paper);border-radius:0 0 16px 16px}
+.sq-slash-menu{border-color:var(--sq-line);background:var(--sq-paper);box-shadow:0 12px 35px #17132524}.sq-slash-menu button{color:var(--sq-ink)}.sq-slash-menu span{color:var(--sq-muted)}
+.sq-slash-menu button[aria-selected=true],.sq-slash-menu button:hover{background:var(--sq-violet-soft);color:var(--sq-violet)}
+.sq-live-preview{margin:18px;border-color:var(--sq-line)}.sq-preview-bar,.dark .sq-preview-bar{background:var(--sq-violet-soft);color:var(--sq-ink)}.sq-preview-bar button,.sq-preview-bar select{background:var(--sq-paper);color:var(--sq-violet);border-color:var(--sq-line)}
+.solqubit-editor.sq-focus-mode{position:fixed;inset:12px;z-index:40;max-height:calc(100dvh - 24px);overflow:auto;box-shadow:0 0 0 100vmax #10101b99}
+.solqubit-editor.sq-focus-mode .fi-fo-rich-editor-toolbar.fi-fo-rich-editor-sticky-toolbar{position:sticky;top:0}.sq-focus-mode .fi-fo-rich-editor-content{min-height:calc(100dvh - 230px)}
+@media(max-width:640px){.solqubit-editor .fi-fo-rich-editor-content{padding:10px}.solqubit-editor .tiptap{padding:22px 16px}.solqubit-editor .fi-fo-rich-editor-toolbar{padding:8px;gap:4px}.solqubit-editor .fi-fo-rich-editor-toolbar-group:nth-child(4){margin-inline-start:0}.sq-document-footer{font-size:10px}.sq-document-footer>span:last-child{display:none}.solqubit-editor.sq-focus-mode{inset:4px;max-height:calc(100dvh - 8px)}.sq-live-preview{margin:10px}}
+/* One row for writing, another for every insertable block. */
+.solqubit-editor .fi-fo-rich-editor-toolbar{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start;gap:8px}
+.solqubit-editor .fi-fo-rich-editor-toolbar-group{display:flex;flex-wrap:wrap;gap:3px;padding:0;border:0;background:transparent;min-width:0}
+.solqubit-editor .fi-fo-rich-editor-toolbar-group:nth-child(2){justify-content:flex-end}
+.solqubit-editor .fi-fo-rich-editor-toolbar-group:nth-child(3){grid-column:1/-1;padding-top:9px;border-top:1px solid var(--sq-line);border-radius:0}
+.solqubit-editor .fi-fo-rich-editor-toolbar-group:nth-child(3)::before{content:'INSERTAR';display:flex;align-items:center;font-size:9px;letter-spacing:.08em;color:var(--sq-muted);padding:0 9px 0 3px}
+.solqubit-editor .fi-fo-rich-editor-tool{flex:0 0 auto}
+.solqubit-editor [data-rich-editor-tool=sq_paragraph]{color:var(--sq-ink);background:var(--sq-canvas)}
+.sq-block-preview .article-notice.notice-info,.dark .sq-block-preview .article-notice.notice-info{background:var(--sq-blue-soft);border-color:var(--sq-blue)}
+.sq-block-preview .article-notice.notice-success,.dark .sq-block-preview .article-notice.notice-success{background:var(--sq-violet-soft);border-color:var(--sq-violet)}
+.sq-autosave-bar{grid-column:1/-1;display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 18px;font-size:12px;color:var(--sq-muted);border-top:1px solid var(--sq-line);background:var(--sq-paper)}
+.sq-autosave-bar span{flex:1;min-width:200px}.sq-autosave-bar button{color:var(--sq-violet);border:1px solid var(--sq-line);border-radius:8px;padding:5px 9px;background:var(--sq-violet-soft)}
+.sq-autosave-bar button[hidden]{display:none}.sq-autosave-bar[data-state=error]{color:var(--sq-peach)}
+.solqubit-editor :is(button,a,select):focus-visible {outline:2px solid var(--sq-violet);outline-offset:2px}
+.sq-block-preview .table-wrap {overflow-x:auto}
+.sq-block-preview .article-notice>div {min-width:0}
+.sq-block-preview .article-notice>div>strong {display:block;margin-bottom:6px}
+.sq-block-preview .attachment>div {min-width:0;overflow-wrap:anywhere}
+.sq-block-preview .attachment {flex-wrap:wrap}
+@media(max-width:760px){.solqubit-editor .fi-fo-rich-editor-toolbar{grid-template-columns:1fr}.solqubit-editor .fi-fo-rich-editor-toolbar-group:nth-child(2){justify-content:flex-start}.solqubit-editor .fi-fo-rich-editor-toolbar-group:nth-child(3){grid-column:1}.solqubit-editor .fi-fo-rich-editor-toolbar.fi-fo-rich-editor-sticky-toolbar{position:static}}
+@media(max-width:640px) {
+  .solqubit-editor .fi-fo-rich-editor-toolbar-group:nth-child(3) {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
+  .solqubit-editor .fi-fo-rich-editor-toolbar-group:nth-child(3)::before {grid-column:1/-1;padding:2px;font-size:10px}
+  .solqubit-editor .fi-fo-rich-editor-toolbar-group:nth-child(3) .fi-fo-rich-editor-tool {justify-content:flex-start;padding:8px 6px;min-width:0;white-space:normal;text-align:left}
+  .solqubit-editor .fi-fo-rich-editor-content {padding:8px}
+  .solqubit-editor .tiptap {padding:20px 12px;font-size:16px}
+  .solqubit-editor .tiptap>h2 {font-size:25px}
+  .solqubit-editor .fi-fo-rich-editor-custom-block-preview {padding:8px}
+  .sq-block-preview .article-notice,.sq-block-preview .article-summary {padding:12px;gap:8px}
+}
+
+/* The document is written with the blog's type: Nunito titles, DM Sans text and IBM Plex Mono only for code. */
+.solqubit-editor .tiptap{font-family:'DM Sans',system-ui,sans-serif}
+.solqubit-editor .tiptap :is(h2,h3){font-family:'Nunito',system-ui,sans-serif;font-weight:800;letter-spacing:0}
+.solqubit-editor .tiptap :is(pre,code),.sq-inline-block[data-id=code] textarea,.sq-inline-block[data-id=output] textarea,.sq-block-preview pre{font-family:'IBM Plex Mono',ui-monospace,monospace}
+.sq-block-preview{font-family:'DM Sans',system-ui,sans-serif}
+.sq-block-preview :is(strong,.article-summary-title){font-family:'Nunito',system-ui,sans-serif}
+/* Blocks look like the blog: a soft background, no coloured bar or frame. */
+.solqubit-editor div[data-type=customBlock]{border:0;border-inline-start:0;background:var(--block-bg)}
+.solqubit-editor .tiptap>blockquote{border-inline-start:0;border-radius:12px}
+.sq-block-preview :is(.article-notice,.article-summary,.attachment),.dark .sq-block-preview :is(.article-notice,.article-summary,.attachment){border:0}
+/* A calm toolbar: Imagen and «Insertar» are visible; every other element lives in the insert menu. */
+.solqubit-editor .sq-hidden-tool{display:none!important}
+.solqubit-editor .fi-fo-rich-editor-toolbar-group:nth-child(3)::before,.sq-writing-page .solqubit-editor .fi-fo-rich-editor-toolbar-group:nth-child(3)::before{content:none!important}
+.solqubit-editor .fi-fo-rich-editor-toolbar-group:nth-child(3){grid-column:auto;padding-top:0;border-top:0}
+.solqubit-editor .fi-fo-rich-editor-toolbar{grid-template-columns:minmax(0,1fr) auto auto}
+.solqubit-editor [data-rich-editor-tool=sq_image],.solqubit-editor [data-rich-editor-tool=sq_insert]{color:var(--sq-violet);background:var(--sq-violet-soft)}

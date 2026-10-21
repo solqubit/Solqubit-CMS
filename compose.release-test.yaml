@@ -1,0 +1,18 @@
+name: solqubit-releaseqa
+services:
+  rootcheck:
+    image: solqubit-cms-web
+    ports:
+      - "127.0.0.1:${RELEASE_QA_PORT:-8089}:80"
+    volumes:
+      - release_test:/var/www
+      - ./release:/releases:ro
+    networks:
+      - cms
+    command: ["sh", "-c", "mkdir -p /var/www/site && if [ ! -f /var/www/site/index.php ]; then unzip -q /releases/solqubit-${RELEASE_QA_VERSION:-1.1.1}-instalacion.zip -d /var/www/site; fi && chown -R www-data:www-data /var/www && exec apache2-foreground"]
+networks:
+  cms:
+    external: true
+    name: solqubit-cms_default
+volumes:
+  release_test:

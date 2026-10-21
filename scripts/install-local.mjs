@@ -1,0 +1,28 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import crypto from 'node:crypto';
+import assert from 'node:assert/strict';
+import { fileURLToPath } from 'node:url';
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const installed = path.join(root,'core/storage/app/installed.json');
+if (fs.existsSync(installed)) { console.log('El CMS ya está instalado; se conserva su configuración.'); process.exit(0); }
+const base = 'http://127.0.0.1:8088';
+const directory = path.join(root,'test-artifacts');
+fs.mkdirSync(directory,{recursive:true,mode:0o700});
+const credentialsFile = path.join(directory,'local-access.json');
+let credentials = fs.existsSync(credentialsFile) ? JSON.parse(fs.readFileSync(credentialsFile,'utf8')) : { url:base, admin:`${base}/admin`, email:'admin@solqubit.local', password:crypto.randomBytes(18).toString('base64url')+'9a' };
+fs.writeFileSync(credentialsFile,JSON.stringify(credentials,null,2),{mode:0o600});
+const environment = Object.fromEntries(fs.readFileSync(path.join(root,'.env'),'utf8').trim().split(/\r?\n/).map(line=>[line.slice(0,line.indexOf('=')),line.slice(line.indexOf('=')+1)]));
+const cookies = new Map();
+const capture = response => response.headers.getSetCookie().forEach(value=>{const pair=value.split(';')[0], at=pair.indexOf('=');cookies.set(pair.slice(0,at),pair.slice(at+1));});
+const page = await fetch(`${base}/install`);capture(page);
+assert.equal(page.status,200,'Installer unavailable');
+const html = await page.text();
+const token = html.match(/name="_token" value="([^"]+)"/)[1];
+const body = new URLSearchParams({ _token:token, starter_content:'empty', site_name:'Solqubit',  timezone:'America/Guayaquil',db_host:'database',db_port:'3306',db_database:'solqubit',db_username:'solqubit',db_password:environment.SOLQUBIT_DB_PASSWORD,name:'Solqubit',username:'admin',email:credentials.email,password:credentials.password,password_confirmation:credentials.password });
+const result = await fetch(`${base}/install`,{method:'POST',headers:{Cookie:[...cookies].map(([k,v])=>`${k}=${v}`).join('; '),'Content-Type':'application/x-www-form-urlencoded',Referer:`${base}/install`},body,redirect:'manual'});
+capture(result);
+assert.equal(result.status,302,`Installation failed: HTTP ${result.status}`);
+assert.ok(fs.existsSync(installed),'Installer did not finish; check application logs and installation form.');
+assert.ok(result.headers.get('location').endsWith('/admin/login'));
+console.log('Instalación HTTP completada: MariaDB configurada, administrador creado y asistente bloqueado. Credenciales guardadas en test-artifacts/local-access.json.');

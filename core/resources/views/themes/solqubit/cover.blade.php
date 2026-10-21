@@ -1,0 +1,2 @@
+@if($media)<img class="cover-art" src="{{ $media->url(($priority ?? false) ? 'hero' : 'card') }}" alt="{{ $media->alt_text ?? '' }}" {{ $media->imageAttributes($sizes ?? (($priority ?? false) ? '(min-width: 1000px) 620px, 100vw' : '(min-width: 1000px) 370px, (min-width: 640px) 50vw, 100vw')) }} loading="{{ ($priority ?? false) ? 'eager' : 'lazy' }}" @if($priority ?? false) fetchpriority="high" @endif>
+@else<img class="cover-art" src="{{ asset('themes/solqubit/assets/cartoon/workspace.webp') }}" alt="" loading="{{ ($priority ?? false) ? 'eager' : 'lazy' }}">@endif

@@ -1,0 +1,1 @@
+<a href="{{ $link['url'] }}" @if($link['active']) aria-current="page" @endif @if($link['new_tab']) target="_blank" rel="noopener noreferrer" @endif>{{ $link['label'] }}@if($link['new_tab'])<span class="sr-only"> (abre en otra pestaña)</span>@endif</a>
